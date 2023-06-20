@@ -1,4 +1,5 @@
-pragma solidity version ^0.5.0;
+pragma solidity ^0.5.0; 
+
 
 contract Adoption{
     address[16] public adopters;
@@ -14,7 +15,21 @@ contract Adoption{
         //se l'id è nel range aggiungi l'indirizzo che fa la chiamata
         //al nostro adopters array
         //l'address della persona dello smart contract che chiama 
-        //questa funzione
+        //questa funzione grazie a msg sender
+        adopters[petId] = msg.sender;
 
+        return petId; //ritorna solo un valore singolo da una chiave data, ma fare 16 api
+                      //non è l'ideale
     }
-}
+        //getadopters, the view parola  nella dichiarazione significa 
+        //che la funzione non modificherà lo stato del contratto, dato che 
+        //adopters è gia dichiarata la possiamo diretttamente ritornare  
+
+        // Retrieving the adopters
+        function getAdopters() public view returns (address[16] memory) {
+         return adopters;
+                    }
+        
+
+        }              
+       
